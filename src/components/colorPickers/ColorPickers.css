@@ -1,0 +1,14 @@
+.help {
+    margin: 20px;
+    padding: 10px;
+}
+
+.clothing-color-picker, .skin-color-picker, .model{
+  padding-top: 5vh;
+  font-family: monospace;
+}
+
+.clothing-color-picker h4, .skin-color-picker h4 {
+  font-weight: bolder;
+  text-transform: uppercase;
+}

@@ -1,0 +1,9 @@
+.card-body img {
+    width: 400px;  
+    height: 400px;  
+}
+
+p {
+    color: #000000;
+    font-weight: bold;
+}
