@@ -1,0 +1,31 @@
+.helpModal {
+    padding-top: 5px;
+}
+
+.helpModal .accordion-button:focus {
+    box-shadow: none;
+}
+
+.helpModal .accordion-button {
+    color: #FFFFFF;
+    background-color: #000000;
+}
+
+.helpModal .accordion-button[aria-expanded='true'], .accordion-button:hover {
+    filter: invert(100);
+    border: 1px #FFFFFF solid;
+    box-shadow: none;
+}
+
+.helpModal .accordion-button.collapsed::after {
+    background-image: url("./arrow-up.svg");
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url("./arrow-down.svg")
+}
+
+.helpModal .modal-content {
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}

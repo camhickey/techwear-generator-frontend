@@ -8,7 +8,6 @@ export const clothingColors = [
 ];
 
 export default function ConvertClothingCode(hexCode) {
-
     for(var colorKey in clothingColors) {
       if(hexCode === clothingColors[colorKey].hex) {
         return clothingColors[colorKey].name;

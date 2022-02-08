@@ -9,3 +9,13 @@
     background-color: #FFFFFF;
     border: 1px #000000 solid;
   }
+
+.btn:focus {
+  box-shadow: none;
+}
+
+.get-outfit .modal-header {
+  justify-content: center;
+  background-color: #000000;
+  color: #FFFFFF;
+}

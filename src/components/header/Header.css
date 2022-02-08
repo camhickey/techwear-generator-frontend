@@ -8,16 +8,17 @@
     color: #FFFFFF;
 }
 
-.navigation .navbar-brand {
-    color: #FFFFFF;
-}
-
 .navigation .dropdown-menu {
     background-color: #000000;
 }
 
 .navigation .dropdown-item {
     color: #FFFFFF;
+}
+
+.dropdown-item:hover {
+    color: #000000;
+    background-color: #FFFFFF;
 }
 
 .navigation .btn {

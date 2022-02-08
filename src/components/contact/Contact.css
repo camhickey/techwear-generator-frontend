@@ -1,0 +1,45 @@
+.socials img {
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+.socials .form-label {
+  margin-top: 10px;
+}
+
+.socials img:hover {
+  border: 1px solid #FFFFFF;
+  background-color: #FFFFFF;
+  transition-duration: 0.2s;
+  filter: invert(1);
+}
+
+.form-control:focus {
+  box-shadow: inset 0 1px 1px rgba(194, 60, 60, 0.075), 0 0 8px rgba(0, 0, 0, 0.6);
+  border: 2px solid #000000;
+}
+
+.btn-group, .btn-toolbar {
+  padding-top: 10px;
+}
+
+.btn {
+  color: #FFFFFF;
+  background-color: #000000;
+  border-radius: 0px;
+}
+  
+.btn:hover {
+  color: #000000;
+  background-color: #FFFFFF;
+  border: 1px #000000 solid;
+}
+
+.subject {
+  padding-top: 5vh;
+}
+
+.subject, .message {
+  padding-left: 5vw;
+  padding-right: 5vw;
+}

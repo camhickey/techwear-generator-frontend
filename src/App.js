@@ -8,6 +8,7 @@ import Greyman from "./components/styles/Greyman";
 import Cyberpunk from "./components/styles/Cyberpunk";
 import Outdoors from "./components/styles/Outdoors";
 import About from "./components/about/About";
+import Contact from "./components/contact/Contact";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route exact path="/cyberpunk" component={Cyberpunk} />
         <Route exact path="/outdoors" component={Outdoors} />
         <Route exact path="/about" component={About} />
+        <Route exact path="/contact" component={Contact} />
       </BrowserRouter>
     </div>
   );
