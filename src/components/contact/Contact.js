@@ -22,17 +22,17 @@ export default function Contact() {
         <textarea name="body" className="form-control" rows="10"></textarea>
 
             <div className="btn-group" role="group">
-            <input className="btn send-btn" type="submit" value="SEND" />
+            <input className="btn" type="submit" value="SEND" />
             </div>
 
             <div className="socials">
             <label className="form-label">My other socials</label>
             <br></br>
             <a href="https://github.com/camhickey" target="_blank">
-            <img src={GithubIcon} width="50" height="50"/>
+            <img src={GithubIcon}/>
             </a>
             <a href="https://www.linkedin.com/in/cameron-hickey/" target="_blank">
-            <img src={LinkedinIcon} width="50" height="50"/>
+            <img src={LinkedinIcon}/>
             </a>
             </div>
 

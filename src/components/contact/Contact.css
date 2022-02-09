@@ -1,10 +1,8 @@
 .socials img {
   margin-right: 5px;
   margin-top: 5px;
-}
-
-.socials .form-label {
-  margin-top: 10px;
+  width: 50px;
+  height: 50px;
 }
 
 .socials img:hover {
@@ -14,6 +12,10 @@
   filter: invert(1);
 }
 
+.socials .form-label {
+  margin-top: 10px;
+}
+
 .form-control:focus {
   box-shadow: inset 0 1px 1px rgba(194, 60, 60, 0.075), 0 0 8px rgba(0, 0, 0, 0.6);
   border: 2px solid #000000;
@@ -21,18 +23,6 @@
 
 .btn-group, .btn-toolbar {
   padding-top: 10px;
-}
-
-.btn {
-  color: #FFFFFF;
-  background-color: #000000;
-  border-radius: 0px;
-}
-  
-.btn:hover {
-  color: #000000;
-  background-color: #FFFFFF;
-  border: 1px #000000 solid;
 }
 
 .subject {

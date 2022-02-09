@@ -4,10 +4,6 @@
     font-family: monospace;
 }
 
-.navigation .nav-link {
-    color: #FFFFFF;
-}
-
 .navigation .dropdown-menu {
     background-color: #000000;
 }
@@ -16,17 +12,7 @@
     color: #FFFFFF;
 }
 
-.dropdown-item:hover {
+.navigation .dropdown-item:hover {
     color: #000000;
     background-color: #FFFFFF;
-}
-
-.navigation .btn {
-    background-color: #000000;
-    color: #FFFFFF;
-}
-
-.navigation .btn:focus, .btn:active {
-    box-shadow:none !important;
-    outline: 0px !important;
 }

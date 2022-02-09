@@ -28,14 +28,14 @@ export default function RenderCards(props) {
                             </div>
                             <div className="modal-body">
                                 <div className="card-group" key={outfitKey}>
-                                <DisplayTechwear color={props.headwearColor} techwearStyle={props.techwearStyle} article="headwear"/>
-                                <DisplayTechwear color={props.topColor} techwearStyle={props.techwearStyle} article="top"/>
-                                <DisplayTechwear color={props.pantsColor} techwearStyle={props.techwearStyle} article="pants"/>
-                                <DisplayTechwear color={props.shoesColor} techwearStyle={props.techwearStyle} article="shoes"/>
+                                {props.headwearColor!=='' ? <DisplayTechwear color={props.headwearColor} techwearStyle={props.techwearStyle} article="headwear"/> : null}
+                                {props.topColor!=='' ? <DisplayTechwear color={props.topColor} techwearStyle={props.techwearStyle} article="top"/> : null}
+                                {props.pantsColor!=='' ? <DisplayTechwear color={props.pantsColor} techwearStyle={props.techwearStyle} article="pants"/> : null}
+                                {props.shoesColor!=='' ? <DisplayTechwear color={props.shoesColor} techwearStyle={props.techwearStyle} article="shoes"/> : null}
                                 </div>
                             </div>
-                            <div className="modal-footer justify-content-center">
-                            <button type="button" className="btn" onClick={() => setOutfitKey(key => key + 1)}>NEW OUTFIT</button>
+                            <div className="modal-footer">
+                            <button type="button" className="btn new-outfit-btn" onClick={() => setOutfitKey(key => key + 1)}>NEW OUTFIT</button>
                             <button type="button" className="btn" data-bs-dismiss="modal">CLOSE</button>
                             </div>
                         </div>

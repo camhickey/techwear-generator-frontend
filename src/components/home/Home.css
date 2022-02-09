@@ -3,26 +3,6 @@
 }
 
 .group .btn {
-    border-radius: 0;
-}
-
-.group .btn:focus, .btn:active {
-    box-shadow:none !important;
-    outline: 0px !important;
-}
-
-.group a:hover {
-    text-decoration: none;
-    color: #000000;
-    background-color: #FFFFFF;
-    padding: 10px;
-}
-
-.group a {
-    text-decoration: none;
-    color: #FFFFFF;
-    background-color: #000000;
-    border: 1px solid #FFFFFF;
     padding: 10px;
 }
 
@@ -48,7 +28,6 @@
 
 .urban:hover h1, .greyman:hover h1, .outdoors:hover h1, .cyberpunk:hover h1 {
     background-color: #000000;
-    border: 1px solid #FFFFFF;
 }
 
 .urban, .greyman, .cyberpunk, .outdoors {
