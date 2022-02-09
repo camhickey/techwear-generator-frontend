@@ -10,7 +10,7 @@ export default function Contact() {
     return(
     <div>
     <Header />
-    <form method="GET" action="mailto:cameron.s.hickey@gmail.com" enctype="text/plain">
+    <form method="GET" action="mailto:cam.s.hickey@gmail.com" enctype="text/plain">
 
         <div className="mb-3 subject">
         <label className="form-label">Subject</label>
