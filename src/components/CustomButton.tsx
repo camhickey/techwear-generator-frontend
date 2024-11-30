@@ -14,7 +14,7 @@ export function CustomButton({
 }: CustomButtonProps) {
   return (
     <Button
-      className="inline-flex uppercase items-center gap-2 bg-gray-700 py-3 px-3 text-white focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
+      className="inline-flex items-center gap-2 bg-black uppercase text-sm py-3 px-3 text-white disabled:opacity-50"
       onClick={onClick}
       disabled={disabled}
     >

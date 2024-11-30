@@ -7,29 +7,32 @@ export interface ClothingCardProps {
 
 export function ClothingCard({ name, price, image, link }: ClothingCardProps) {
   return (
-    <div className="border-solid border-black border-2 container mx-auto max-w-sm w-full p-4 sm:w-1/2">
-      <div className="card flex flex-col justify-center p-10 bg-white rounded-lg shadow-2xl">
-        <div className="prod-title">
-          <p className="text-2xl uppercase text-gray-900 font-bold">{name}</p>
+    <div className="relative flex flex-col text-gray-700 bg-black bg-clip-border">
+      <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-96">
+        <img
+          src={image}
+          alt=""
+          className="object-cover w-full h-full text-center"
+        />
+      </div>
+      <div className="p-6">
+        <div className="flex items-center justify-between mb-2">
+          <p className="block font-sans text-base antialiased font-medium leading-relaxed text-neutral-200">
+            {name}
+          </p>
+          <p className="block font-sans text-base antialiased font-medium leading-relaxed text-neutral-200">
+            ${price / 100}
+          </p>
         </div>
-        <div className="prod-img">
-          <img
-            src={image}
-            alt="product"
-            className="w-full object-cover object-center"
-          />
-        </div>
-        <div className="prod-info grid gap-10">
-          <div className="flex flex-col md:flex-row justify-between items-center text-gray-900">
-            <p className="font-bold text-xl">$ {price / 100}</p>
-            <button
-              className="px-6 py-2 transition ease-in duration-200 uppercase hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none"
-              onClick={() => window.open(link, '_blank')}
-            >
-              Buy now
-            </button>
-          </div>
-        </div>
+      </div>
+      <div className="p-6 pt-0">
+        <button
+          onClick={() => window.open(link, '_blank')}
+          className="align-middle select-none font-sans font-bold text-center text-xs py-3 px-6 block w-full text-neutral-200"
+          type="button"
+        >
+          BUY NOW
+        </button>
       </div>
     </div>
   );

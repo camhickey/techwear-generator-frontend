@@ -4,23 +4,36 @@ import {
   DisclosurePanel,
 } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import clsx from 'clsx';
-
-const navigation = [
-  { name: 'URBAN', href: '/urban', current: true },
-  { name: 'GREYMAN', href: '/greyman', current: false },
-  { name: 'CYBERPUNK', href: '/cyberpunk', current: false },
-  { name: 'OUTDOORS', href: 'outdoors', current: false },
-  { name: 'ABOUT', href: '/about', current: false },
-];
+import { useLocation } from 'react-router';
 
 export function NavBar() {
+  const location = useLocation();
+  const navigation = [
+    { name: 'HOME', href: '/', current: location.pathname === '/' },
+    { name: 'URBAN', href: '/urban', current: location.pathname === '/urban' },
+    {
+      name: 'GREYMAN',
+      href: '/greyman',
+      current: location.pathname === '/greyman',
+    },
+    {
+      name: 'CYBERPUNK',
+      href: '/cyberpunk',
+      current: location.pathname === '/cyberpunk',
+    },
+    {
+      name: 'OUTDOORS',
+      href: '/outdoors',
+      current: location.pathname === '/outdoors',
+    },
+    { name: 'ABOUT', href: '/about', current: location.pathname === '/about' },
+  ];
   return (
     <Disclosure as="nav" className="bg-black">
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
         <div className="relative flex h-16 items-center justify-between">
+          {/* Mobile menu button */}
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-            {/* Mobile menu button */}
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
               <span className="absolute -inset-0.5" />
               <span className="sr-only">Open main menu</span>
@@ -35,7 +48,7 @@ export function NavBar() {
             </DisclosureButton>
           </div>
           {/* Desktop menu */}
-          <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+          <div className="mx-auto flex sm:items-stretch sm:justify-start">
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => (
@@ -43,12 +56,7 @@ export function NavBar() {
                     key={item.name}
                     href={item.href}
                     aria-current={item.current ? 'page' : undefined}
-                    className={clsx(
-                      item.current
-                        ? 'text-white underline'
-                        : 'text-gray-300 hover:underline',
-                      'rounded-md px-3 py-2 text-sm font-medium',
-                    )}
+                    className={`px-3 py-2 text-sm font-medium ${item.current ? 'text-white border-b-white border-b-2 border-b-solid' : 'text-neutral-400 hover:border-b-neutral-400 hover:border-b-2 hover:border-b-solid'}`}
                   >
                     {item.name}
                   </a>
@@ -67,12 +75,7 @@ export function NavBar() {
               as="a"
               href={item.href}
               aria-current={item.current ? 'page' : undefined}
-              className={clsx(
-                item.current
-                  ? 'underline text-white'
-                  : 'text-gray-300 hover:underline hover:text-white',
-                'block rounded-md px-3 py-2 text-base font-medium',
-              )}
+              className={`block px-3 py-2 text-base font-medium ${item.current ? 'text-white' : 'text-neutral-400'}`}
             >
               {item.name}
             </DisclosureButton>

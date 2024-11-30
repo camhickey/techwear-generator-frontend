@@ -1,12 +1,10 @@
-import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  DialogTitle,
-} from '@headlessui/react';
+import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import { useEffect, useState } from 'react';
 import { getClothing } from '../functions/getClothing';
 import { ClothingCard, ClothingCardProps } from './ClothingCard';
+import { ArrowPathIcon } from '@heroicons/react/24/solid';
+import { ClothingNotFoundCard } from './ClothingNotFoundCard';
+import { CustomButton } from './CustomButton';
 
 interface OutfitModalProps {
   outfit: {
@@ -60,23 +58,46 @@ export function OutfitModal({
 
   return (
     <Dialog open={isOpen} onClose={onClose} className="relative z-50">
-      <DialogBackdrop
-        transition
-        className="fixed inset-0 bg-black/30 duration-300 ease-out data-[closed]:opacity-0"
-      />
-      <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
+      <div className="fixed inset-0 w-screen overflow-y-auto p-4">
         <DialogPanel
           transition
-          className="w-full space-y-4 bg-white p-12 duration-300 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
+          className="space-y-4 bg-black border-solid border-neutral-400 border-2 p-12 duration-300 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
         >
-          <DialogTitle className="text-lg font-bold">How to use</DialogTitle>
-          <div className="flex flex-row">
-            {cards.map((card, index) => (
-              <ClothingCard key={index} {...card} />
-            ))}
+          <DialogTitle className="text-lg text-white font-bold uppercase">
+            Your outfit
+          </DialogTitle>
+          <div className="grid md:grid-cols-4 md:grid-rows-1 grid-cols-1 grid-rows-4 gap-4">
+            {cards.map((card, index) =>
+              card ? (
+                <ClothingCard key={index} {...card} />
+              ) : (
+                <ClothingNotFoundCard
+                  key={index}
+                  description={`No ${style} ${clothingRequests[index].article.toLowerCase()} in ${clothingRequests[index].color.toLowerCase()} in our database. Your request went through successfully, but clothing meeting this criteria hasn't been added yet.`}
+                />
+              ),
+            )}
           </div>
-          <div className="flex gap-4">
-            <button onClick={onClose}>Close</button>
+          <div className="inline-flex gap-4">
+            <CustomButton
+              onClick={() => {
+                setCards([]);
+                clothingRequests.forEach((request) => {
+                  if (!request.color) return;
+                  getClothing(style, request.color, request.article).then(
+                    (clothing) => {
+                      setCards((prevCards) => [...prevCards, clothing]);
+                    },
+                  );
+                });
+              }}
+            >
+              New outfit
+              <ArrowPathIcon className="h-4 w-4" />
+            </CustomButton>
+            <button className="text-sm uppercase text-white" onClick={onClose}>
+              CLOSE
+            </button>
           </div>
         </DialogPanel>
       </div>

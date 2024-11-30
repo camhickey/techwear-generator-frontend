@@ -2,18 +2,28 @@ import { useState } from 'react';
 import { ColorPicker } from '../components/ColorPicker';
 import { OutfitModal } from '../components/OutfitModal';
 import { UrbanModel } from '../components/models/UrbanModel';
-import { colorMap } from '../constants/colorMap';
+import { colorMap } from '../colorMap/colorMap';
 import { getPlainColor } from '../functions/getPlainColor';
+import { ClothingStyles } from '../enums/enums';
+import { CustomButton } from '../components/CustomButton';
+import { Colors } from '../enums/enums';
+import { HelpModal } from '../components/HelpModal';
 
 export function Urban() {
-  const [selectedColor, setSelectedColor] = useState(colorMap['BLACK']);
+  const [selectedColor, setSelectedColor] = useState(colorMap[Colors.BLACK]);
   const [isOutfitModalOpen, setIsOutfitModalOpen] = useState(false);
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [outfit, setOutfit] = useState({
     headwearColor: '#2d2d2d',
     topColor: '#2d2d2d',
     pantsColor: '#2d2d2d',
     footwearColor: '#2d2d2d',
   });
+  const isOutfitEmpty =
+    outfit.headwearColor === '#2d2d2d' &&
+    outfit.topColor === '#2d2d2d' &&
+    outfit.pantsColor === '#2d2d2d' &&
+    outfit.footwearColor === '#2d2d2d';
 
   return (
     <div className="flex flex-col items-center gap-5 min-h-screen min-w-screen bg-[#2d2d2d]">
@@ -46,22 +56,23 @@ export function Urban() {
           className="w-10 h-10 rounded-full border-black border-2 border-solid"
           style={{ backgroundColor: selectedColor }}
         />
-        <p className="font-bold text-white">
-          {Object.keys(colorMap).find((key) => colorMap[key] === selectedColor)}
-        </p>
+        <p className="font-bold text-white">{getPlainColor(selectedColor)}</p>
       </div>
-      <button
-        disabled={
-          outfit.headwearColor === '#2d2d2d' &&
-          outfit.topColor === '#2d2d2d' &&
-          outfit.pantsColor === '#2d2d2d' &&
-          outfit.footwearColor === '#2d2d2d'
-        }
-        onClick={() => setIsOutfitModalOpen(true)}
-        className="bg-white text-black font-bold py-2 px-4 rounded-full"
-      >
-        Create Outfit
-      </button>
+      <div className="flex flex-row gap-2">
+        <CustomButton
+          disabled={isOutfitEmpty}
+          onClick={() => setIsOutfitModalOpen(true)}
+        >
+          {isOutfitEmpty ? 'Color at least 1 piece' : 'Outfit'}
+        </CustomButton>
+        <CustomButton onClick={() => setIsHelpModalOpen(true)}>
+          Help
+        </CustomButton>
+        <HelpModal
+          isOpen={isHelpModalOpen}
+          onClose={() => setIsHelpModalOpen(false)}
+        />
+      </div>
       {isOutfitModalOpen && (
         <OutfitModal
           isOpen={isOutfitModalOpen}
@@ -72,7 +83,7 @@ export function Urban() {
             pantsColor: getPlainColor(outfit.pantsColor) as string,
             footwearColor: getPlainColor(outfit.footwearColor) as string,
           }}
-          style="urban"
+          style={ClothingStyles.URBAN}
         />
       )}
     </div>

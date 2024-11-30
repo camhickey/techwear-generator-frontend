@@ -3,18 +3,26 @@ import { ColorPicker } from '../components/ColorPicker';
 import { CustomButton } from '../components/CustomButton';
 import { OutfitModal } from '../components/OutfitModal';
 import { CyberpunkModel } from '../components/models/CyberpunkModel';
-import { colorMap } from '../constants/colorMap';
+import { colorMap } from '../colorMap/colorMap';
 import { getPlainColor } from '../functions/getPlainColor';
+import { Colors } from '../enums/enums';
+import { HelpModal } from '../components/HelpModal';
 
 export function Cyberpunk() {
-  const [selectedColor, setSelectedColor] = useState(colorMap['BLACK']);
+  const [selectedColor, setSelectedColor] = useState(colorMap[Colors.BLACK]);
   const [isOutfitModalOpen, setIsOutfitModalOpen] = useState(false);
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const [outfit, setOutfit] = useState({
     headwearColor: '#2d2d2d',
     topColor: '#2d2d2d',
     pantsColor: '#2d2d2d',
     footwearColor: '#2d2d2d',
   });
+  const isOutfitEmpty =
+    outfit.headwearColor === '#2d2d2d' &&
+    outfit.topColor === '#2d2d2d' &&
+    outfit.pantsColor === '#2d2d2d' &&
+    outfit.footwearColor === '#2d2d2d';
 
   return (
     <div className="flex flex-col items-center gap-5 min-h-screen min-w-screen bg-[#2d2d2d]">
@@ -51,9 +59,21 @@ export function Cyberpunk() {
           {Object.keys(colorMap).find((key) => colorMap[key] === selectedColor)}
         </p>
       </div>
-      <CustomButton onClick={() => setIsOutfitModalOpen(true)}>
-        Save changes
-      </CustomButton>
+      <div className="flex flex-row gap-2">
+        <CustomButton
+          disabled={isOutfitEmpty}
+          onClick={() => setIsOutfitModalOpen(true)}
+        >
+          {isOutfitEmpty ? 'Color at least 1 piece' : 'Outfit'}
+        </CustomButton>
+        <CustomButton onClick={() => setIsHelpModalOpen(true)}>
+          Help
+        </CustomButton>
+        <HelpModal
+          isOpen={isHelpModalOpen}
+          onClose={() => setIsHelpModalOpen(false)}
+        />
+      </div>
       {isOutfitModalOpen && (
         <OutfitModal
           isOpen={isOutfitModalOpen}

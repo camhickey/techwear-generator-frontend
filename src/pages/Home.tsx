@@ -49,25 +49,25 @@ export function Home() {
           <FashionCard
             title="Urban"
             description={`Classic and consistent. It's a reliable middle-ground.`}
-            background="bg-[url(/public/urbanBG.webp)]"
+            background="bg-[url(/public/home/urbanBG.webp)]"
             onClick={() => navigate('/urban')}
           />
           <FashionCard
             title="Greyman"
             description={`Less is more.`}
-            background="bg-[url(/public/greymanBG.webp)]"
+            background="bg-[url(/public/home/greymanBG.webp)]"
             onClick={() => navigate('/greyman')}
           />
           <FashionCard
             title="Cyberpunk"
             description={`Embrace eccentricity. Then crank it to 11.`}
-            background="bg-[url(/public/cyberpunkBG.webp)]"
+            background="bg-[url(/public/home/cyberpunkBG.webp)]"
             onClick={() => navigate('/cyberpunk')}
           />
           <FashionCard
             title="Outdoors"
             description={`Who says you can't flex on nature?`}
-            background="bg-[url(/public/outdoorsBG.webp)]"
+            background="bg-[url(/public/home/outdoorsBG.webp)]"
             onClick={() => navigate('/outdoors')}
           />
         </div>
