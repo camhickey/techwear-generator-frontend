@@ -1,10 +1,10 @@
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
-import { useEffect, useState } from 'react';
-import { getClothing } from '../functions/getClothing';
-import { ClothingCard, ClothingCardProps } from './ClothingCard';
 import { ArrowPathIcon } from '@heroicons/react/24/solid';
+import { useState, useEffect } from 'react';
+import { Articles } from '../enums/enums';
+import { getClothing } from '../functions/getClothing';
+import { ClothingCardProps, ClothingCard } from './ClothingCard';
 import { ClothingNotFoundCard } from './ClothingNotFoundCard';
-import { CustomButton } from './CustomButton';
 
 interface OutfitModalProps {
   outfit: {
@@ -24,36 +24,48 @@ export function OutfitModal({
   isOpen,
   onClose,
 }: OutfitModalProps) {
-  const clothingRequests = [
-    {
-      color: outfit.headwearColor,
-      article: 'HEADWEAR',
-    },
-    {
-      color: outfit.topColor,
-      article: 'TOP',
-    },
-    {
-      color: outfit.pantsColor,
-      article: 'PANTS',
-    },
-    {
-      color: outfit.footwearColor,
-      article: 'FOOTWEAR',
-    },
-  ];
+  const [headwear, setHeadwear] = useState<ClothingCardProps | null>(null);
+  const [top, setTop] = useState<ClothingCardProps | null>(null);
+  const [pants, setPants] = useState<ClothingCardProps | null>(null);
+  const [footwear, setFootwear] = useState<ClothingCardProps | null>(null);
 
-  const [cards, setCards] = useState<ClothingCardProps[]>([]);
+  function renderOutfit() {
+    outfit.headwearColor &&
+      getClothing(style, outfit.headwearColor, Articles.HEADWEAR)
+        .then((clothing: ClothingCardProps) => {
+          setHeadwear(clothing);
+        })
+        .catch(() => {
+          setHeadwear(null);
+        });
+    outfit.topColor &&
+      getClothing(style, outfit.topColor, Articles.TOP)
+        .then((clothing: ClothingCardProps) => {
+          setTop(clothing);
+        })
+        .catch(() => {
+          setTop(null);
+        });
+    outfit.pantsColor &&
+      getClothing(style, outfit.pantsColor, Articles.PANTS)
+        .then((clothing: ClothingCardProps) => {
+          setPants(clothing);
+        })
+        .catch(() => {
+          setPants(null);
+        });
+    outfit.footwearColor &&
+      getClothing(style, outfit.footwearColor, Articles.FOOTWEAR)
+        .then((clothing: ClothingCardProps) => {
+          setFootwear(clothing);
+        })
+        .catch(() => {
+          setFootwear(null);
+        });
+  }
 
   useEffect(() => {
-    clothingRequests.forEach(async (request) => {
-      if (!request.color) return;
-      await getClothing(style, request.color, request.article).then(
-        (clothing) => {
-          setCards((prevCards) => [...prevCards, clothing]);
-        },
-      );
-    });
+    renderOutfit();
   }, []);
 
   return (
@@ -66,36 +78,80 @@ export function OutfitModal({
           <DialogTitle className="text-lg text-white font-bold uppercase">
             Your outfit
           </DialogTitle>
-          <div className="grid md:grid-cols-4 md:grid-rows-1 grid-cols-1 grid-rows-4 gap-4">
-            {cards.map((card, index) =>
-              card ? (
-                <ClothingCard key={index} {...card} />
-              ) : (
-                <ClothingNotFoundCard
-                  key={index}
-                  description={`No ${style} ${clothingRequests[index].article.toLowerCase()} in ${clothingRequests[index].color.toLowerCase()} in our database. Your request went through successfully, but clothing meeting this criteria hasn't been added yet.`}
-                />
-              ),
+          <div
+            className={`grid md:grid-cols-4 md:grid-rows-1 grid-cols-1 grid-rows-4`}
+          >
+            {headwear ? (
+              <ClothingCard {...headwear} />
+            ) : (
+              <ClothingNotFoundCard
+                title={
+                  outfit.headwearColor
+                    ? 'Headwear not found'
+                    : 'Headwear not selected'
+                }
+                description={
+                  outfit.headwearColor
+                    ? `Could not find headwear in ${outfit.headwearColor.toLowerCase()} for your style`
+                    : 'If you want headwear, go back and select a color'
+                }
+              />
+            )}
+            {top ? (
+              <ClothingCard {...top} />
+            ) : (
+              <ClothingNotFoundCard
+                title={outfit.topColor ? 'Top not found' : 'Top not selected'}
+                description={
+                  outfit.topColor
+                    ? `Could not find a top in ${outfit.topColor.toLowerCase()} for your style`
+                    : 'If you want a top, go back and select a color'
+                }
+              />
+            )}
+            {pants ? (
+              <ClothingCard {...pants} />
+            ) : (
+              <ClothingNotFoundCard
+                title={
+                  outfit.pantsColor ? 'Pants not found' : 'Pants not selected'
+                }
+                description={
+                  outfit.pantsColor
+                    ? `Could not find pants in ${outfit.pantsColor.toLowerCase()} for your style`
+                    : 'If you want pants, go back and select a color'
+                }
+              />
+            )}
+            {footwear ? (
+              <ClothingCard {...footwear} />
+            ) : (
+              <ClothingNotFoundCard
+                title={
+                  outfit.footwearColor
+                    ? 'Footwear not found'
+                    : 'Footwear not selected'
+                }
+                description={
+                  outfit.footwearColor
+                    ? `Could not find footwear in ${outfit.footwearColor.toLowerCase()} for your style`
+                    : 'If you want footwear, go back and select a color'
+                }
+              />
             )}
           </div>
           <div className="inline-flex gap-4">
-            <CustomButton
-              onClick={() => {
-                setCards([]);
-                clothingRequests.forEach((request) => {
-                  if (!request.color) return;
-                  getClothing(style, request.color, request.article).then(
-                    (clothing) => {
-                      setCards((prevCards) => [...prevCards, clothing]);
-                    },
-                  );
-                });
-              }}
+            <button
+              className="inline-flex gap-2 items-center bg-black text-white uppercase p-2"
+              onClick={renderOutfit}
             >
               New outfit
-              <ArrowPathIcon className="h-4 w-4" />
-            </CustomButton>
-            <button className="text-sm uppercase text-white" onClick={onClose}>
+              <ArrowPathIcon className="h-5 w-5" />
+            </button>
+            <button
+              className="bg-black uppercase text-white p-2"
+              onClick={onClose}
+            >
               CLOSE
             </button>
           </div>

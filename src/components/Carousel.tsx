@@ -26,7 +26,7 @@ export function Carousel({ images }: CarouselProps) {
         ))}
       </div>
       <button
-        className="absolute top-1/2 left-0 transform -translate-y-1/2 text-white p-2"
+        className="bg-black absolute top-1/2 left-0 transform -translate-y-1/2 text-white"
         onClick={() =>
           setCurrentIndex(
             (prevIndex) => (prevIndex - 1 + images.length) % images.length,
@@ -36,7 +36,7 @@ export function Carousel({ images }: CarouselProps) {
         <ChevronLeftIcon className="h-6 w-6" />
       </button>
       <button
-        className="absolute top-1/2 right-0 transform -translate-y-1/2 text-white p-2"
+        className="bg-black absolute top-1/2 right-0 transform -translate-y-1/2 text-white"
         onClick={() =>
           setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
         }

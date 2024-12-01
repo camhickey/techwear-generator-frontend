@@ -1,5 +1,4 @@
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
-import { CustomButton } from '../components/CustomButton';
 
 export function NotFound() {
   return (
@@ -8,14 +7,15 @@ export function NotFound() {
       <h1 className="text-neutral-400 text-4xl font-extrabold">
         PAGE NOT FOUND
       </h1>
-      <CustomButton
+      <button
+        className="inline-flex gap-2 items-center bg-black text-white uppercase p-2"
         onClick={() => {
           window.location.href = '/';
         }}
       >
         Return to home
         <ArrowRightIcon className="w-5 h-5" />
-      </CustomButton>
+      </button>
     </div>
   );
 }

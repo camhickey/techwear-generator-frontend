@@ -2,7 +2,7 @@ export enum Articles {
   HEADWEAR = 'HEADWEAR',
   TOP = 'TOP',
   PANTS = 'PANTS',
-  SHOES = 'SHOES',
+  FOOTWEAR = 'FOOTWEAR',
 }
 
 export enum ClothingStyles {

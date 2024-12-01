@@ -7,7 +7,7 @@ export interface ClothingCardProps {
 
 export function ClothingCard({ name, price, image, link }: ClothingCardProps) {
   return (
-    <div className="relative flex flex-col text-gray-700 bg-black bg-clip-border">
+    <div className="transition duration-400 ease-in data-[closed]:opacity-0 relative flex flex-col text-gray-700 bg-black bg-clip-border">
       <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-96">
         <img
           src={image}
