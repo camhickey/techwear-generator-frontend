@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Analytics } from '@vercel/analytics/react';
 import { BrowserRouter, Route, Routes, Outlet } from 'react-router';
 import './index.css';
 import { Home } from './pages/Home';
@@ -16,6 +17,7 @@ const root = ReactDOM.createRoot(
 root.render(
   //<React.StrictMode>
   <BrowserRouter>
+    <Analytics />
     <Routes>
       <Route
         element={
