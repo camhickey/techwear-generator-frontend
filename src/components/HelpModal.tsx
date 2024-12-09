@@ -69,6 +69,7 @@ export function HelpModal({ isOpen, onClose }: HelpModalProps) {
                 <a
                   className="font-bold text-white hover:cursor-pointer"
                   onClick={() => navigate('/about')}
+                  href="/about"
                 >
                   click here.
                 </a>{' '}
