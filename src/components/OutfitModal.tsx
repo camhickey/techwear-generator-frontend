@@ -64,9 +64,10 @@ export function OutfitModal({
         });
   }
 
+  //should probably wrap in a useCallback or something
   useEffect(() => {
     renderOutfit();
-  });
+  }, []);
 
   return (
     <Dialog open={isOpen} onClose={onClose} className="relative z-50">
