@@ -1,50 +1,22 @@
-# React + TypeScript + Vite
+# Techwear Generator
+This is a personal project that generates a cohesive techwear outfit based on user preferences. The data being pulled for this project's database is retrieved using webscrapers built for specific clothing sites. The front end is built in React using TypeScript as well TailwindCSS and its sister library HeadlessUI.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+You can find the fully hosted site at:
+https://techweargenerator.vercel.app/
 
-Currently, two official plugins are available:
+You can find the repo for the site's back end at:
+https://github.com/camhickey/techwear-generator-backend
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
+You can also clone the repo and run it locally.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Install dependencies using
 ```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+yarn
 ```
+And use
+```
+yarn start
+```
+to launch the application on localhost:5173. See the package.json for other commands.
+
