@@ -4,10 +4,11 @@ import {
   DisclosurePanel,
 } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 export function NavBar() {
   const location = useLocation();
+  const navigate = useNavigate();
   const navigation = [
     { name: 'HOME', href: '/', current: location.pathname === '/' },
     { name: 'URBAN', href: '/urban', current: location.pathname === '/urban' },
@@ -52,14 +53,14 @@ export function NavBar() {
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => (
-                  <a
+                  <button
                     key={item.name}
-                    href={item.href}
+                    onClick={() => navigate(item.href)}
                     aria-current={item.current ? 'page' : undefined}
                     className={`px-3 py-2 text-sm font-medium ${item.current ? 'text-white border-b-white border-b-2 border-b-solid' : 'text-neutral-400 hover:border-b-neutral-400 hover:border-b-2 hover:border-b-solid'}`}
                   >
                     {item.name}
-                  </a>
+                  </button>
                 ))}
               </div>
             </div>
@@ -72,8 +73,8 @@ export function NavBar() {
           {navigation.map((item) => (
             <DisclosureButton
               key={item.name}
-              as="a"
-              href={item.href}
+              as="button"
+              onClick={() => navigate(item.href)}
               aria-current={item.current ? 'page' : undefined}
               className={`block px-3 py-2 text-base font-medium ${item.current ? 'text-white' : 'text-neutral-400'}`}
             >

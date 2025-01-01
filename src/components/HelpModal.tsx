@@ -66,13 +66,12 @@ export function HelpModal({ isOpen, onClose }: HelpModalProps) {
                 These styles you see are subsets of techwear fashion culture. If
                 you want a more detailed explanation on what makes each style
                 unique,{' '}
-                <a
+                <button
                   className="font-bold text-white hover:cursor-pointer"
                   onClick={() => navigate('/about')}
-                  href="/about"
                 >
                   click here.
-                </a>{' '}
+                </button>{' '}
                 That said, whichever page you create your outfit on will
                 influence the types of clothing you get in your outfit. For
                 example, an outfit created on the &quot;urban&quot; page will
