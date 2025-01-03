@@ -13,7 +13,7 @@ export function NotFound() {
         className="inline-flex gap-2 items-center bg-black text-white uppercase p-2"
         onClick={() => navigate('/')}
       >
-        Return to home
+        Click to return to home
         <ArrowRightIcon className="w-5 h-5" />
       </button>
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Route, Routes, Outlet } from 'react-router';
+import { BrowserRouter, Route, Routes, Outlet, Navigate } from 'react-router';
 import './index.css';
 import { Home } from './pages/Home';
 import { NavBar } from './components/NavBar';
@@ -43,7 +43,8 @@ root.render(
         </Route>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/404" element={<NotFound />} />
+        <Route path="*" element={<Navigate to="/404" replace />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
