@@ -42,7 +42,7 @@ root.render(
           />
         </Route>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        {/*<Route path="/about" element={<About />} />*/}
         <Route path="/404" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/404" replace />} />
       </Routes>
