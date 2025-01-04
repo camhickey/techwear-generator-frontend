@@ -5,8 +5,10 @@ export function NotFound() {
   const navigate = useNavigate();
   return (
     <div className="bg-black min-h-screen flex flex-col items-center justify-center">
-      <h1 className="text-white text-9xl font-extrabold">404</h1>
-      <h1 className="text-neutral-400 text-4xl font-extrabold">
+      <h1 className="text-white text-9xl font-extrabold hover:cursor-default">
+        OOPS
+      </h1>
+      <h1 className="text-neutral-400 text-4xl font-extrabold hover:cursor-default">
         PAGE NOT FOUND
       </h1>
       <button

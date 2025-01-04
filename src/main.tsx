@@ -44,8 +44,6 @@ root.render(
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
-        {/*<Route path="/404" element={<NotFound />} />
-        <Route path="*" element={<Navigate to="/404" replace />} />*/}
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
