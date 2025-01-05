@@ -6,10 +6,10 @@ export enum Articles {
 }
 
 export enum ClothingStyles {
-  URBAN = 'urban',
-  GREYMAN = 'greyman',
-  CYBERPUNK = 'cyberpunk',
-  OUTDOORS = 'outdoors',
+  URBAN = 'URBAN',
+  GRAYMAN = 'GRAYMAN',
+  CYBERPUNK = 'CYBERPUNK',
+  OUTDOORS = 'OUTDOORS',
 }
 
 export enum Colors {

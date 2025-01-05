@@ -5,7 +5,7 @@ export async function getClothing(
 ) {
   try {
     const response = await fetch(
-      `https://techwear-generator-backend.vercel.app/${style}/${color}/${article}`,
+      `${import.meta.env.VITE_API_URL}/${style}/${color}/${article}`,
     );
     const jsonData = await response.json();
     return jsonData[0];

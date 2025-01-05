@@ -31,8 +31,8 @@ root.render(
             element={<StylePage clothingStyle={ClothingStyles.URBAN} />}
           />
           <Route
-            path="/greyman"
-            element={<StylePage clothingStyle={ClothingStyles.GREYMAN} />}
+            path="/grayman"
+            element={<StylePage clothingStyle={ClothingStyles.GRAYMAN} />}
           />
           <Route
             path="/cyberpunk"

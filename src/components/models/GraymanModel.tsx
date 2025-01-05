@@ -1,6 +1,6 @@
 import { ModelProps } from './type';
 
-export function GreymanModel({
+export function GraymanModel({
   headwearColor,
   onHeadwearColorChange,
   topColor,

@@ -44,18 +44,18 @@ export function About() {
           link="/urban"
         />
         <StyleSection
-          title="Greyman"
-          description='As the name implies, the greyman substyle is a minimalistic style that emphasizes simplicity, clean lines, and a sense of modernity. The name "greyman" references the idea of a person who blends into their surroundings and peers, which is why the style may seem not as outwardly expressive.'
+          title="Grayman"
+          description='As the name implies, the grayman substyle is a minimalistic style that emphasizes simplicity, clean lines, and a sense of modernity. The name "grayman" references the idea of a person who blends into their surroundings and peers, which is why the style may seem not as outwardly expressive.'
           images={[
-            '/slides/greyman/1.jpg',
-            '/slides/greyman/2.jpg',
-            '/slides/greyman/3.jpg',
+            '/slides/grayman/1.jpg',
+            '/slides/grayman/2.jpg',
+            '/slides/grayman/3.jpg',
           ]}
-          link="/greyman"
+          link="/grayman"
         />
         <StyleSection
           title="Cyberpunk"
-          description="The cyberpunk substyle is a maximalist style that combines futuristic elements with punk, goth, and industrial aesthetics. It tends to abandon functionality for more outrageous and stylish elements. It is the foil to the greyman substyle."
+          description="The cyberpunk substyle is a maximalist style that combines futuristic elements with punk, goth, and industrial aesthetics. It tends to abandon functionality for more outrageous and stylish elements. It is the foil to the grayman substyle."
           images={[
             '/slides/cyberpunk/1.jpg',
             '/slides/cyberpunk/2.jpg',

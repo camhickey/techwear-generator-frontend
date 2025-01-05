@@ -53,10 +53,10 @@ export function Home() {
             onClick={() => navigate('/urban')}
           />
           <FashionCard
-            title="Greyman"
+            title="Grayman"
             description={`Less is more.`}
-            background="bg-[url(/home/greymanBG.webp)]"
-            onClick={() => navigate('/greyman')}
+            background="bg-[url(/home/graymanBG.webp)]"
+            onClick={() => navigate('/grayman')}
           />
           <FashionCard
             title="Cyberpunk"

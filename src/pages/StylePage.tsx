@@ -7,7 +7,7 @@ import { OutfitModal } from '../components/OutfitModal';
 import { Colors, ClothingStyles } from '../enums/enums';
 import { getPlainColor } from '../functions/getPlainColor';
 import { CyberpunkModel } from '../components/models/CyberpunkModel';
-import { GreymanModel } from '../components/models/GreymanModel';
+import { GraymanModel } from '../components/models/GraymanModel';
 import { OutdoorsModel } from '../components/models/OutdoorsModel';
 
 type StylePageTemplateProps = {
@@ -59,8 +59,8 @@ export function StylePage({ clothingStyle }: StylePageTemplateProps) {
             }
           />
         )}
-        {clothingStyle === ClothingStyles.GREYMAN && (
-          <GreymanModel
+        {clothingStyle === ClothingStyles.GRAYMAN && (
+          <GraymanModel
             headwearColor={outfit.headwearColor}
             onHeadwearColorChange={() =>
               setOutfit({ ...outfit, headwearColor: selectedColor })

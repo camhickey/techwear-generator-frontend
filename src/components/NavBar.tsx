@@ -21,9 +21,9 @@ export function NavBar() {
       current: location.pathname === '/urban',
     },
     {
-      name: 'GREYMAN',
-      onClick: () => navigate('/greyman'),
-      current: location.pathname === '/greyman',
+      name: 'GRAYMAN',
+      onClick: () => navigate('/grayman'),
+      current: location.pathname === '/grayman',
     },
     {
       name: 'CYBERPUNK',

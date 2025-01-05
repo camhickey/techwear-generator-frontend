@@ -38,7 +38,7 @@ export function HelpModal({ isOpen, onClose }: HelpModalProps) {
                 The goal of this site is to help you build a techwear outfit
                 based on your preferences. On your screen is the outline of a
                 model representing the &quot;style&quot; of techwear you chose
-                (urban, greyman, cyberpunk, outdoors). Each model has four
+                (urban, grayman, cyberpunk, outdoors). Each model has four
                 parts: headwear, top, pants, and footwear. You can click on
                 these parts of the model to select the color you want for each
                 part. To change the color you apply to the clothing, use the
@@ -56,7 +56,7 @@ export function HelpModal({ isOpen, onClose }: HelpModalProps) {
           <Disclosure as="div" className="p-6">
             <DisclosureButton className="group flex w-full items-center justify-between">
               <p className="font-medium text-white text-left">
-                What are these &quot;styles&quot;? (urban, greyman, cyberpunk,
+                What are these &quot;styles&quot;? (urban, grayman, cyberpunk,
                 outdoors)
               </p>
               <ChevronDownIcon className="size-5 fill-white group-data-[open]:rotate-180" />
