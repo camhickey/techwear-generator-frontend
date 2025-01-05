@@ -5,11 +5,12 @@ export async function getClothing(
 ) {
   try {
     const response = await fetch(
-      `${import.meta.env.VITE_API_URL}/${style}/${color}/${article}`,
+      `https://techwear-generator-backend.vercel.app/${style}/${color}/${article}`,
     );
     const jsonData = await response.json();
     return jsonData[0];
   } catch (error) {
+    console.log(' L BOZO');
     console.log(error);
   }
 }
