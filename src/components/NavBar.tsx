@@ -10,24 +10,46 @@ export function NavBar() {
   const location = useLocation();
   const navigate = useNavigate();
   const navigation = [
-    { name: 'HOME', href: '/', current: location.pathname === '/' },
-    { name: 'URBAN', href: '/urban', current: location.pathname === '/urban' },
+    {
+      name: 'HOME',
+      onClick: () => navigate('/'),
+      current: location.pathname === '/',
+    },
+    {
+      name: 'URBAN',
+      onClick: () => navigate('/urban'),
+      current: location.pathname === '/urban',
+    },
     {
       name: 'GREYMAN',
-      href: '/greyman',
+      onClick: () => navigate('/greyman'),
       current: location.pathname === '/greyman',
     },
     {
       name: 'CYBERPUNK',
-      href: '/cyberpunk',
+      onClick: () => navigate('/cyberpunk'),
       current: location.pathname === '/cyberpunk',
     },
     {
       name: 'OUTDOORS',
-      href: '/outdoors',
+      onClick: () => navigate('/outdoors'),
       current: location.pathname === '/outdoors',
     },
-    { name: 'ABOUT', href: '/about', current: location.pathname === '/about' },
+    {
+      name: 'ABOUT',
+      onClick: () => navigate('/about'),
+      current: location.pathname === '/about',
+    },
+    {
+      name: 'GITHUB',
+      onClick: () =>
+        window.open(
+          'https://github.com/camhickey/techwear-generator-frontend',
+          '_blank',
+          'noopener,noreferrer',
+        ),
+      current: false,
+    },
   ];
   return (
     <Disclosure as="nav" className="bg-black">
@@ -51,11 +73,11 @@ export function NavBar() {
           {/* Desktop menu */}
           <div className="mx-auto flex sm:items-stretch sm:justify-start">
             <div className="hidden sm:ml-6 sm:block">
-              <div className="flex space-x-4">
+              <div className="flex space-x-4 items-center">
                 {navigation.map((item) => (
                   <button
                     key={item.name}
-                    onClick={() => navigate(item.href)}
+                    onClick={item.onClick}
                     aria-current={item.current ? 'page' : undefined}
                     className={`px-3 py-2 text-sm font-medium ${item.current ? 'text-white border-b-white border-b-2 border-b-solid' : 'text-neutral-400 hover:border-b-neutral-400 hover:border-b-2 hover:border-b-solid'}`}
                   >
@@ -74,7 +96,7 @@ export function NavBar() {
             <DisclosureButton
               key={item.name}
               as="button"
-              onClick={() => navigate(item.href)}
+              onClick={item.onClick}
               aria-current={item.current ? 'page' : undefined}
               className={`block px-3 py-2 text-base font-medium ${item.current ? 'text-white' : 'text-neutral-400'}`}
             >
