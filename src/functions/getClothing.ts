@@ -1,7 +1,9 @@
+import { Articles, Colors, ClothingStyles } from '../enums/enums';
+
 export async function getClothing(
-  style: string,
-  color: string,
-  article: string,
+  style: ClothingStyles,
+  color: Colors,
+  article: Articles,
 ) {
   try {
     const response = await fetch(

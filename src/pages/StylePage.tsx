@@ -151,10 +151,10 @@ export function StylePage({ clothingStyle }: StylePageTemplateProps) {
           isOpen={isOutfitModalOpen}
           onClose={() => setIsOutfitModalOpen(false)}
           outfit={{
-            headwearColor: getPlainColor(outfit.headwearColor) as string,
-            topColor: getPlainColor(outfit.topColor) as string,
-            pantsColor: getPlainColor(outfit.pantsColor) as string,
-            footwearColor: getPlainColor(outfit.footwearColor) as string,
+            headwearColor: getPlainColor(outfit.headwearColor) as Colors,
+            topColor: getPlainColor(outfit.topColor) as Colors,
+            pantsColor: getPlainColor(outfit.pantsColor) as Colors,
+            footwearColor: getPlainColor(outfit.footwearColor) as Colors,
           }}
           style={clothingStyle}
         />

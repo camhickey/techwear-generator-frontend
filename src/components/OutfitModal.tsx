@@ -1,17 +1,17 @@
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import { ArrowPathIcon } from '@heroicons/react/24/solid';
 import { useState, useEffect, Dispatch, SetStateAction } from 'react';
-import { Articles, ClothingStyles } from '../enums/enums';
+import { Articles, ClothingStyles, Colors } from '../enums/enums';
 import { getClothing } from '../functions/getClothing';
 import { ClothingCardProps, ClothingCard } from './ClothingCard';
 import { ClothingNotFoundCard } from './ClothingNotFoundCard';
 
 interface OutfitModalProps {
   outfit: {
-    headwearColor: string;
-    topColor: string;
-    pantsColor: string;
-    footwearColor: string;
+    headwearColor: Colors;
+    topColor: Colors;
+    pantsColor: Colors;
+    footwearColor: Colors;
   };
   style: ClothingStyles;
   isOpen: boolean;
@@ -19,7 +19,7 @@ interface OutfitModalProps {
 }
 
 function updateArticle(
-  color: string,
+  color: Colors,
   style: ClothingStyles,
   article: Articles,
   setClothing: Dispatch<SetStateAction<ClothingCardProps | null>>,
@@ -43,10 +43,24 @@ export function OutfitModal({
   const [footwear, setFootwear] = useState<ClothingCardProps | null>(null);
 
   useEffect(() => {
-    updateArticle(outfit.headwearColor, style, Articles.HEADWEAR, setHeadwear);
-    updateArticle(outfit.topColor, style, Articles.TOP, setTop);
-    updateArticle(outfit.pantsColor, style, Articles.PANTS, setPants);
-    updateArticle(outfit.footwearColor, style, Articles.FOOTWEAR, setFootwear);
+    outfit.headwearColor &&
+      updateArticle(
+        outfit.headwearColor,
+        style,
+        Articles.HEADWEAR,
+        setHeadwear,
+      );
+    outfit.topColor &&
+      updateArticle(outfit.topColor, style, Articles.TOP, setTop);
+    outfit.pantsColor &&
+      updateArticle(outfit.pantsColor, style, Articles.PANTS, setPants);
+    outfit.footwearColor &&
+      updateArticle(
+        outfit.footwearColor,
+        style,
+        Articles.FOOTWEAR,
+        setFootwear,
+      );
   }, []);
 
   return (
