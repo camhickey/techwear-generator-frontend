@@ -10,7 +10,6 @@ export async function getClothing(
     const jsonData = await response.json();
     return jsonData[0];
   } catch (error) {
-    console.log(' L BOZO');
     console.log(error);
   }
 }
