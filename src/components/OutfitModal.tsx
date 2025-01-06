@@ -1,11 +1,10 @@
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import { ArrowPathIcon } from '@heroicons/react/24/solid';
-import { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import { useState, useEffect } from 'react';
 import { Articles, ClothingStyles, Colors } from '../enums/enums';
-import { getClothing } from '../functions/getClothing';
 import { ClothingCardProps, ClothingCard } from './ClothingCard';
 import { ClothingNotFoundCard } from './ClothingNotFoundCard';
-
+import { getClothing } from '../functions/getClothing';
 interface OutfitModalProps {
   outfit: {
     headwearColor: Colors;
@@ -18,19 +17,6 @@ interface OutfitModalProps {
   onClose: () => void;
 }
 
-function updateArticle(
-  color: Colors,
-  style: ClothingStyles,
-  article: Articles,
-  setClothing: Dispatch<SetStateAction<ClothingCardProps | null>>,
-) {
-  if (color) {
-    getClothing(style, color, article)
-      .then(setClothing)
-      .catch(() => setClothing(null));
-  }
-}
-
 export function OutfitModal({
   outfit,
   style,
@@ -41,27 +27,49 @@ export function OutfitModal({
   const [top, setTop] = useState<ClothingCardProps | null>(null);
   const [pants, setPants] = useState<ClothingCardProps | null>(null);
   const [footwear, setFootwear] = useState<ClothingCardProps | null>(null);
+  const [isHeadwearLoading, setIsHeadwearLoading] = useState(true);
+  const [isTopLoading, setIsTopLoading] = useState(true);
+  const [isPantsLoading, setIsPantsLoading] = useState(true);
+  const [isFootwearLoading, setIsFootwearLoading] = useState(true);
+
+  const handleHeadwearUpdate = () => {
+    setIsHeadwearLoading(true);
+    getClothing(style, outfit.headwearColor, Articles.HEADWEAR)
+      .then((headwear: ClothingCardProps) => setHeadwear(headwear))
+      .finally(() => setIsHeadwearLoading(false));
+  };
+
+  const handleTopUpdate = () => {
+    setIsTopLoading(true);
+    getClothing(style, outfit.topColor, Articles.TOP)
+      .then((top: ClothingCardProps) => setTop(top))
+      .finally(() => setIsTopLoading(false));
+  };
+
+  const handlePantsUpdate = () => {
+    setIsPantsLoading(true);
+    getClothing(style, outfit.pantsColor, Articles.PANTS)
+      .then((pants: ClothingCardProps) => setPants(pants))
+      .finally(() => setIsPantsLoading(false));
+  };
+
+  const handleFootwearUpdate = () => {
+    setIsFootwearLoading(true);
+    getClothing(style, outfit.pantsColor, Articles.FOOTWEAR)
+      .then((footwear: ClothingCardProps) => setFootwear(footwear))
+      .finally(() => setIsFootwearLoading(false));
+  };
+
+  const handleOutfitUpdate = () => {
+    handleHeadwearUpdate();
+    handleTopUpdate();
+    handlePantsUpdate();
+    handleFootwearUpdate();
+  };
 
   useEffect(() => {
-    outfit.headwearColor &&
-      updateArticle(
-        outfit.headwearColor,
-        style,
-        Articles.HEADWEAR,
-        setHeadwear,
-      );
-    outfit.topColor &&
-      updateArticle(outfit.topColor, style, Articles.TOP, setTop);
-    outfit.pantsColor &&
-      updateArticle(outfit.pantsColor, style, Articles.PANTS, setPants);
-    outfit.footwearColor &&
-      updateArticle(
-        outfit.footwearColor,
-        style,
-        Articles.FOOTWEAR,
-        setFootwear,
-      );
-  }, []);
+    isOpen && handleOutfitUpdate();
+  }, [isOpen]);
 
   return (
     <Dialog open={isOpen} onClose={onClose} className="relative z-50">
@@ -79,121 +87,56 @@ export function OutfitModal({
             {headwear ? (
               <ClothingCard
                 {...headwear}
-                onRefresh={() =>
-                  updateArticle(
-                    outfit.headwearColor,
-                    style,
-                    Articles.HEADWEAR,
-                    setHeadwear,
-                  )
-                }
+                onRefresh={handleHeadwearUpdate}
+                isLoading={isHeadwearLoading}
               />
             ) : (
               <ClothingNotFoundCard
-                title={
-                  outfit.headwearColor
-                    ? 'Headwear not found'
-                    : 'Headwear not selected'
-                }
-                description={
-                  outfit.headwearColor
-                    ? `Could not find headwear in ${outfit.headwearColor.toLowerCase()} for your style`
-                    : 'If you want headwear, go back and select a color'
-                }
+                color={outfit.headwearColor}
+                article={Articles.HEADWEAR}
               />
             )}
             {top ? (
               <ClothingCard
                 {...top}
-                onRefresh={() =>
-                  updateArticle(outfit.topColor, style, Articles.TOP, setTop)
-                }
+                onRefresh={handleTopUpdate}
+                isLoading={isTopLoading}
               />
             ) : (
               <ClothingNotFoundCard
-                title={outfit.topColor ? 'Top not found' : 'Top not selected'}
-                description={
-                  outfit.topColor
-                    ? `Could not find a top in ${outfit.topColor.toLowerCase()} for your style`
-                    : 'If you want a top, go back and select a color'
-                }
+                color={outfit.topColor}
+                article={Articles.TOP}
               />
             )}
             {pants ? (
               <ClothingCard
                 {...pants}
-                onRefresh={() =>
-                  updateArticle(
-                    outfit.pantsColor,
-                    style,
-                    Articles.PANTS,
-                    setPants,
-                  )
-                }
+                onRefresh={handlePantsUpdate}
+                isLoading={isPantsLoading}
               />
             ) : (
               <ClothingNotFoundCard
-                title={
-                  outfit.pantsColor ? 'Pants not found' : 'Pants not selected'
-                }
-                description={
-                  outfit.pantsColor
-                    ? `Could not find pants in ${outfit.pantsColor.toLowerCase()} for your style`
-                    : 'If you want pants, go back and select a color'
-                }
+                color={outfit.pantsColor}
+                article={Articles.PANTS}
               />
             )}
             {footwear ? (
               <ClothingCard
                 {...footwear}
-                onRefresh={() =>
-                  updateArticle(
-                    outfit.footwearColor,
-                    style,
-                    Articles.FOOTWEAR,
-                    setFootwear,
-                  )
-                }
+                onRefresh={handleFootwearUpdate}
+                isLoading={isFootwearLoading}
               />
             ) : (
               <ClothingNotFoundCard
-                title={
-                  outfit.footwearColor
-                    ? 'Footwear not found'
-                    : 'Footwear not selected'
-                }
-                description={
-                  outfit.footwearColor
-                    ? `Could not find footwear in ${outfit.footwearColor.toLowerCase()} for your style`
-                    : 'If you want footwear, go back and select a color'
-                }
+                color={outfit.footwearColor}
+                article={Articles.FOOTWEAR}
               />
             )}
           </div>
           <div className="inline-flex gap-4">
             <button
               className="inline-flex gap-2 items-center bg-black text-white uppercase p-2"
-              onClick={() => {
-                updateArticle(
-                  outfit.headwearColor,
-                  style,
-                  Articles.HEADWEAR,
-                  setHeadwear,
-                );
-                updateArticle(outfit.topColor, style, Articles.TOP, setTop);
-                updateArticle(
-                  outfit.pantsColor,
-                  style,
-                  Articles.PANTS,
-                  setPants,
-                );
-                updateArticle(
-                  outfit.footwearColor,
-                  style,
-                  Articles.FOOTWEAR,
-                  setFootwear,
-                );
-              }}
+              onClick={handleOutfitUpdate}
             >
               New outfit
               <ArrowPathIcon className="h-5 w-5" />

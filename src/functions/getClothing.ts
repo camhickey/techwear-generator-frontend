@@ -5,6 +5,7 @@ export async function getClothing(
   color: Colors,
   article: Articles,
 ) {
+  if (!color) return null;
   try {
     const response = await fetch(
       `https://techwear-generator-backend.vercel.app/${style}/${color}/${article}`,
@@ -13,5 +14,6 @@ export async function getClothing(
     return jsonData[0];
   } catch (error) {
     console.log(error);
+    return null;
   }
 }
