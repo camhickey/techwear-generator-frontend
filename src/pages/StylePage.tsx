@@ -130,13 +130,13 @@ export function StylePage({ clothingStyle }: StylePageTemplateProps) {
         </div>
         <button
           disabled={isOutfitEmpty}
-          className="bg-black text-white uppercase p-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="bg-black text-white uppercase p-2 disabled:opacity-50 disabled:cursor-not-allowed hover:border-white border-black border-solid border-2"
           onClick={() => setIsOutfitModalOpen(true)}
         >
           Get Outfit
         </button>
         <button
-          className="bg-black text-white uppercase p-2"
+          className="bg-black text-white uppercase p-2 hover:border-white border-black border-solid border-2"
           onClick={() => setIsHelpModalOpen(true)}
         >
           Help

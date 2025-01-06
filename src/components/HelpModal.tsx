@@ -56,6 +56,38 @@ export function HelpModal({ isOpen, onClose }: HelpModalProps) {
           <Disclosure as="div" className="p-6">
             <DisclosureButton className="group flex w-full items-center justify-between">
               <p className="font-medium text-white text-left">
+                Why did a card not show up when I made my outfit?
+              </p>
+              <ChevronDownIcon className="size-5 fill-white group-data-[open]:rotate-180" />
+            </DisclosureButton>
+            <DisclosurePanel className="mt-2 text-neutral-400">
+              Right now, the database holding the clothing may not have entries
+              for every combination of color, style, and article of clothing. If
+              you got a card saying &quot;Clothing not found&quot;, then this is
+              the case for your selection. The database will be updated in the
+              future, so this issue will hopefully be fixed.
+            </DisclosurePanel>
+          </Disclosure>
+          <Disclosure as="div" className="p-6">
+            <DisclosureButton className="group flex w-full items-center justify-between">
+              <p className="font-medium text-white text-left">
+                Why did I get the same clothing even though I clicked NEW OUTFIT
+                or NEW CLOTHING?
+              </p>
+              <ChevronDownIcon className="size-5 fill-white group-data-[open]:rotate-180" />
+            </DisclosureButton>
+            <DisclosurePanel className="mt-2 text-neutral-400">
+              <p>
+                NEW OUTFIT or NEW CLOTHING make a purely random selection of
+                clothing based on your input. The database I store the clothing
+                in may not have a lot (maybe none) of every combination of
+                clothing, so sometimes you will get the same clothing.
+              </p>
+            </DisclosurePanel>
+          </Disclosure>
+          <Disclosure as="div" className="p-6">
+            <DisclosureButton className="group flex w-full items-center justify-between">
+              <p className="font-medium text-white text-left">
                 What are these &quot;styles&quot;? (urban, grayman, cyberpunk,
                 outdoors)
               </p>
@@ -78,21 +110,6 @@ export function HelpModal({ isOpen, onClose }: HelpModalProps) {
                 have different clothing than one created on the
                 &quot;outdoors&quot; page.
               </p>
-            </DisclosurePanel>
-          </Disclosure>
-          <Disclosure as="div" className="p-6">
-            <DisclosureButton className="group flex w-full items-center justify-between">
-              <p className="font-medium text-white text-left">
-                Why did a card not show up when I made my outfit?
-              </p>
-              <ChevronDownIcon className="size-5 fill-white group-data-[open]:rotate-180" />
-            </DisclosureButton>
-            <DisclosurePanel className="mt-2 text-neutral-400">
-              Right now, the database holding the clothing may not have entries
-              for every combination of color, style, and article of clothing. If
-              you got a card saying &quot;Clothing not found&quot;, then this is
-              the case for your selection. The database will be updated in the
-              future, so this issue will hopefully be fixed.
             </DisclosurePanel>
           </Disclosure>
           <button className="text-sm uppercase text-white" onClick={onClose}>

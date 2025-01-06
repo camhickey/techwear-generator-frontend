@@ -18,7 +18,7 @@ export function ClothingCard({
   return (
     <div className="relative flex flex-col text-gray-700 bg-black bg-clip-border">
       <div
-        className={`transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'} relative mx-4 mt-4 overflow-hidden text-gray-700 bg-black bg-clip-border rounded-xl h-96`}
+        className={`transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'} relative mx-4 mt-4 overflow-hidden text-gray-700 bg-black bg-clip-border h-96`}
       >
         {isLoading ? (
           <div className="w-full h-full flex items-center justify-center">
@@ -57,7 +57,7 @@ export function ClothingCard({
           onClick={onRefresh}
           className="align-middle select-none font-sans font-bold text-center text-xs py-3 px-6 block w-full text-neutral-200"
         >
-          REFRESH
+          NEW CLOTHING
         </button>
       </div>
     </div>
