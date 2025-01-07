@@ -1,5 +1,5 @@
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
-import { ArrowPathIcon } from '@heroicons/react/24/solid';
+import { ArrowPathIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import { useState, useEffect } from 'react';
 import { Articles, ClothingStyles, Colors } from '../enums/enums';
 import { ClothingCardProps, ClothingCard } from './ClothingCard';
@@ -76,10 +76,14 @@ export function OutfitModal({
       <div className="fixed inset-0 w-screen overflow-y-auto p-4">
         <DialogPanel
           transition
-          className="space-y-4 bg-black border-solid border-neutral-400 border-2 p-12 duration-300 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
+          className="space-y-4 bg-black md:h-full border-solid border-neutral-400 border-2 p-12 duration-300 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
         >
-          <DialogTitle className="text-lg text-white font-bold uppercase">
+          <DialogTitle className="text-lg text-white font-bold uppercase flex flex-row items-center justify-between">
             Your outfit
+            <XMarkIcon
+              onClick={onClose}
+              className="h-8 w-8 hover:cursor-pointer"
+            />
           </DialogTitle>
           <div
             className={`grid md:grid-cols-4 md:grid-rows-1 grid-cols-1 grid-rows-4`}

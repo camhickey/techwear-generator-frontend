@@ -33,29 +33,27 @@ export function ClothingCard({
         )}
       </div>
       <div className="p-6">
-        <div className="flex items-center justify-between mb-2">
-          <p
-            className={`transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'} block font-sans text-sm antialiased font-medium leading-relaxed text-neutral-200`}
-          >
-            {isLoading ? 'LOADING' : name.toUpperCase()}
-          </p>
-          <p
-            className={`transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'} block font-sans text-base antialiased font-medium leading-relaxed text-neutral-200`}
-          >
-            {isLoading ? '...' : `$${price / 100}`}
-          </p>
-        </div>
+        <p
+          className={`transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'} text-center text-sm text-neutral-200 font-bold`}
+        >
+          {isLoading ? 'LOADING' : name.toUpperCase()}
+        </p>
+        <p
+          className={`transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'} text-center text-neutral-200`}
+        >
+          {isLoading ? '...' : `$${price / 100}`}
+        </p>
       </div>
-      <div className="p-6 flex flex-row">
+      <div className="flex flex-row">
         <button
           onClick={() => window.open(link, '_blank')}
-          className="align-middle select-none font-sans font-bold text-center text-xs py-3 px-6 block w-full text-neutral-200"
+          className="align-middle select-none font-bold text-center text-xs py-3 px-6 block w-full text-neutral-200"
         >
           BUY NOW
         </button>
         <button
           onClick={onRefresh}
-          className="align-middle select-none font-sans font-bold text-center text-xs py-3 px-6 block w-full text-neutral-200"
+          className="align-middle select-none font-bold text-center text-xs py-3 px-6 block w-full text-neutral-200"
         >
           NEW CLOTHING
         </button>
