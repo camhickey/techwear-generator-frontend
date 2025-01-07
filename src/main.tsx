@@ -9,6 +9,7 @@ import { NotFound } from './pages/NotFound';
 import { ClothingStyles } from './enums/enums';
 import { StylePage } from './pages/StylePage';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -17,6 +18,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Analytics />
+      <SpeedInsights />
       <Routes>
         <Route
           element={
