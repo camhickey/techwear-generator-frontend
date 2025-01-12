@@ -1,4 +1,4 @@
-import { Articles, Colors, ClothingStyles } from '../enums/enums';
+import { Articles, Colors, ClothingStyles } from '@enums/enums';
 
 export async function getClothing(
   style: ClothingStyles,

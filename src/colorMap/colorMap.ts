@@ -1,8 +1,10 @@
+import { Colors } from '@enums/enums';
+
 export const colorMap: Record<string, string> = {
-  BLACK: '#151515',
-  GRAY: '#716A5C',
-  WHITE: '#F4ECD6',
-  BLUE: '#161B33',
-  GREEN: '#11270B',
-  BROWN: '#4C2719',
+  [Colors.BLACK]: '#151515',
+  [Colors.GRAY]: '#474A48',
+  [Colors.WHITE]: '#F4ECD6',
+  [Colors.BLUE]: '#161B33',
+  [Colors.GREEN]: '#11270B',
+  [Colors.BROWN]: '#4C2719',
 };

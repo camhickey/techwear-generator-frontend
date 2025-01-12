@@ -1,9 +1,9 @@
 import { NoSymbolIcon } from '@heroicons/react/24/solid';
-import { Colors, Articles } from '../enums/enums';
+import { Colors, Articles } from '@enums/enums';
 
 type ClothingNotFoundCardProps = {
   article: Articles;
-  color: Colors;
+  color?: Colors;
 };
 
 export function ClothingNotFoundCard({

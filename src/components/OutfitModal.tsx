@@ -1,64 +1,77 @@
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import { ArrowPathIcon, XMarkIcon } from '@heroicons/react/24/solid';
-import { useState, useEffect } from 'react';
-import { Articles, ClothingStyles, Colors } from '../enums/enums';
-import { ClothingCardProps, ClothingCard } from './ClothingCard';
-import { ClothingNotFoundCard } from './ClothingNotFoundCard';
-import { getClothing } from '../functions/getClothing';
+import { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import { Articles, ClothingStyles, Colors } from '@enums/enums';
+import { ClothingCardProps, ClothingCard } from '@components/ClothingCard';
+import { ClothingNotFoundCard } from '@components/ClothingNotFoundCard';
+import { getClothing } from '@functions/getClothing';
 interface OutfitModalProps {
-  outfit: {
-    headwearColor: Colors;
-    topColor: Colors;
-    pantsColor: Colors;
-    footwearColor: Colors;
-  };
+  headwearColor?: Colors;
+  topColor?: Colors;
+  pantsColor?: Colors;
+  footwearColor?: Colors;
   style: ClothingStyles;
   isOpen: boolean;
   onClose: () => void;
 }
 
 export function OutfitModal({
-  outfit,
+  headwearColor,
+  topColor,
+  pantsColor,
+  footwearColor,
   style,
   isOpen,
   onClose,
 }: OutfitModalProps) {
-  const [headwear, setHeadwear] = useState<ClothingCardProps | null>(null);
-  const [top, setTop] = useState<ClothingCardProps | null>(null);
-  const [pants, setPants] = useState<ClothingCardProps | null>(null);
-  const [footwear, setFootwear] = useState<ClothingCardProps | null>(null);
+  const [headwear, setHeadwear] = useState<ClothingCardProps>();
+  const [top, setTop] = useState<ClothingCardProps>();
+  const [pants, setPants] = useState<ClothingCardProps>();
+  const [footwear, setFootwear] = useState<ClothingCardProps>();
   const [isHeadwearLoading, setIsHeadwearLoading] = useState(true);
   const [isTopLoading, setIsTopLoading] = useState(true);
   const [isPantsLoading, setIsPantsLoading] = useState(true);
   const [isFootwearLoading, setIsFootwearLoading] = useState(true);
 
-  const handleHeadwearUpdate = () => {
-    setIsHeadwearLoading(true);
-    getClothing(style, outfit.headwearColor, Articles.HEADWEAR)
-      .then((headwear: ClothingCardProps) => setHeadwear(headwear))
-      .finally(() => setIsHeadwearLoading(false));
+  const handleClothingUpdate = (
+    article: Articles,
+    clothingSetter: Dispatch<SetStateAction<ClothingCardProps | undefined>>,
+    isLoadingSetter: Dispatch<SetStateAction<boolean>>,
+    color?: Colors,
+  ) => {
+    if (!color) return;
+    isLoadingSetter(true);
+    getClothing(style, color, article)
+      .then((clothing: ClothingCardProps) => clothingSetter(clothing))
+      .finally(() => isLoadingSetter(false));
   };
 
-  const handleTopUpdate = () => {
-    setIsTopLoading(true);
-    getClothing(style, outfit.topColor, Articles.TOP)
-      .then((top: ClothingCardProps) => setTop(top))
-      .finally(() => setIsTopLoading(false));
-  };
+  const handleHeadwearUpdate = () =>
+    handleClothingUpdate(
+      Articles.HEADWEAR,
+      setHeadwear,
+      setIsHeadwearLoading,
+      headwearColor,
+    );
 
-  const handlePantsUpdate = () => {
-    setIsPantsLoading(true);
-    getClothing(style, outfit.pantsColor, Articles.PANTS)
-      .then((pants: ClothingCardProps) => setPants(pants))
-      .finally(() => setIsPantsLoading(false));
-  };
+  const handleTopUpdate = () =>
+    handleClothingUpdate(Articles.TOP, setTop, setIsTopLoading, topColor);
 
-  const handleFootwearUpdate = () => {
-    setIsFootwearLoading(true);
-    getClothing(style, outfit.pantsColor, Articles.FOOTWEAR)
-      .then((footwear: ClothingCardProps) => setFootwear(footwear))
-      .finally(() => setIsFootwearLoading(false));
-  };
+  const handlePantsUpdate = () =>
+    handleClothingUpdate(
+      Articles.PANTS,
+      setPants,
+      setIsPantsLoading,
+      pantsColor,
+    );
+
+  const handleFootwearUpdate = () =>
+    handleClothingUpdate(
+      Articles.FOOTWEAR,
+      setFootwear,
+      setIsFootwearLoading,
+      footwearColor,
+    );
 
   const handleOutfitUpdate = () => {
     handleHeadwearUpdate();
@@ -96,7 +109,7 @@ export function OutfitModal({
               />
             ) : (
               <ClothingNotFoundCard
-                color={outfit.headwearColor}
+                color={headwearColor}
                 article={Articles.HEADWEAR}
               />
             )}
@@ -107,10 +120,7 @@ export function OutfitModal({
                 isLoading={isTopLoading}
               />
             ) : (
-              <ClothingNotFoundCard
-                color={outfit.topColor}
-                article={Articles.TOP}
-              />
+              <ClothingNotFoundCard color={topColor} article={Articles.TOP} />
             )}
             {pants ? (
               <ClothingCard
@@ -120,7 +130,7 @@ export function OutfitModal({
               />
             ) : (
               <ClothingNotFoundCard
-                color={outfit.pantsColor}
+                color={pantsColor}
                 article={Articles.PANTS}
               />
             )}
@@ -132,7 +142,7 @@ export function OutfitModal({
               />
             ) : (
               <ClothingNotFoundCard
-                color={outfit.footwearColor}
+                color={footwearColor}
                 article={Articles.FOOTWEAR}
               />
             )}

@@ -1,10 +1,10 @@
 export type ModelProps = {
-  headwearColor: string;
+  headwearColor?: string;
   onHeadwearColorChange: () => void;
-  topColor: string;
+  topColor?: string;
   onTopColorChange: () => void;
-  pantsColor: string;
+  pantsColor?: string;
   onPantsColorChange: () => void;
-  footwearColor: string;
+  footwearColor?: string;
   onFootwearColorChange: () => void;
 };
