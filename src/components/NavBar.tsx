@@ -1,3 +1,4 @@
+import { useAuth } from '@/useAuth';
 import {
   Disclosure,
   DisclosureButton,
@@ -5,16 +6,15 @@ import {
 } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useLocation, useNavigate } from 'react-router';
+import { AboutModal } from './AboutModal';
+import { useState } from 'react';
 
 export function NavBar() {
+  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
   const navigation = [
-    {
-      name: 'HOME',
-      onClick: () => navigate('/'),
-      current: location.pathname === '/',
-    },
     {
       name: 'URBAN',
       onClick: () => navigate('/urban'),
@@ -36,19 +36,16 @@ export function NavBar() {
       current: location.pathname === '/outdoors',
     },
     {
-      name: 'ABOUT',
-      onClick: () => navigate('/about'),
-      current: location.pathname === '/about',
+      name: isAuthenticated ? 'ACCOUNT' : 'LOGIN',
+      onClick: () =>
+        isAuthenticated ? navigate('/account') : navigate('/login'),
+      current: location.pathname === '/account',
     },
     {
-      name: 'GITHUB',
+      name: isAuthenticated ? 'MY OUTFITS' : 'REGISTER',
       onClick: () =>
-        window.open(
-          'https://github.com/camhickey/techwear-generator-frontend',
-          '_blank',
-          'noopener,noreferrer',
-        ),
-      current: false,
+        isAuthenticated ? navigate('/outfits') : navigate('/register'),
+      current: location.pathname === '/outfits',
     },
   ];
   return (
@@ -79,7 +76,7 @@ export function NavBar() {
                     key={item.name}
                     onClick={item.onClick}
                     aria-current={item.current ? 'page' : undefined}
-                    className={`px-3 py-2 text-sm font-medium ${item.current ? 'text-white border-b-white border-b-2 border-b-solid' : 'text-neutral-400 hover:border-b-neutral-400 hover:border-b-2 hover:border-b-solid'}`}
+                    className={`px-3 py-2 text-sm font-bold duration-300 ${item.current ? 'text-orange-500' : 'text-neutral-400 hover:text-white'}`}
                   >
                     {item.name}
                   </button>
@@ -98,13 +95,14 @@ export function NavBar() {
               as="button"
               onClick={item.onClick}
               aria-current={item.current ? 'page' : undefined}
-              className={`block px-3 py-2 text-base font-medium ${item.current ? 'text-white' : 'text-neutral-400'}`}
+              className={`block px-3 py-2 text-base ${item.current ? 'text-white' : 'text-neutral-400'}`}
             >
               {item.name}
             </DisclosureButton>
           ))}
         </div>
       </DisclosurePanel>
+      <AboutModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </Disclosure>
   );
 }

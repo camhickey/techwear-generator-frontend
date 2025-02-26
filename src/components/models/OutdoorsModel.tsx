@@ -1,5 +1,9 @@
 import { ModelProps } from './type';
-import { BG_COLOR, SKIN_COLOR, OUTLINE_COLOR } from '@constants/colors';
+import {
+  BG_COLOR,
+  SKIN_COLOR,
+  OUTLINE_COLOR,
+} from '@/components/models/colors';
 
 export function OutdoorsModel({
   headwearColor,

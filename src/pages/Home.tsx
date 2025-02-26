@@ -27,7 +27,7 @@ function FashionCard({
           </p>
           <button
             onClick={onClick}
-            className="mt-5 p-2 w-full text-white border-white border-solid border-2 opacity-0 group-hover:opacity-100 hover:text-orange-500 hover:border-orange-500 transform duration-500"
+            className="text-sm mt-5 p-2 w-full text-white border-white border-solid border-2 opacity-0 group-hover:opacity-100 hover:text-orange-500 hover:border-orange-500 transform duration-500"
           >
             EXPLORE
           </button>

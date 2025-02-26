@@ -3,12 +3,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@colorMap/*": ["./src/colorMap/*"],
       "@components/*": ["./src/components/*"],
-      "@constants/*": ["./src/constants/*"],
-      "@enums/*": ["./src/enums/*"],
       "@functions/*": ["./src/functions/*"],
-      "@pages/*": ["./src/pages/*"]
+      "@pages/*": ["./src/pages/*"],
+      "@hooks/*": ["./src/hooks/*"]
     },
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2020",
@@ -32,5 +30,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "vite.config.ts"]
+  "include": ["src", "vite.config.ts", "supabaseClient.ts"]
 }

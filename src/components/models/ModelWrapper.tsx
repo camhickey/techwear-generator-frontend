@@ -1,4 +1,4 @@
-import { ClothingStyles } from '@enums/enums';
+import { ClothingStyle } from '@/enums';
 import { CyberpunkModel } from './CyberpunkModel';
 import { GraymanModel } from './GraymanModel';
 import { OutdoorsModel } from './OutdoorsModel';
@@ -16,12 +16,12 @@ export function ModelWrapper({
   footwearColor,
   onFootwearColorChange,
   clothingStyle,
-}: ModelProps & { clothingStyle: ClothingStyles }) {
-  const models: Record<ClothingStyles, FC<ModelProps>> = {
-    [ClothingStyles.URBAN]: UrbanModel,
-    [ClothingStyles.GRAYMAN]: GraymanModel,
-    [ClothingStyles.CYBERPUNK]: CyberpunkModel,
-    [ClothingStyles.OUTDOORS]: OutdoorsModel,
+}: ModelProps & { clothingStyle: ClothingStyle }) {
+  const models: Record<ClothingStyle, FC<ModelProps>> = {
+    [ClothingStyle.URBAN]: UrbanModel,
+    [ClothingStyle.GRAYMAN]: GraymanModel,
+    [ClothingStyle.CYBERPUNK]: CyberpunkModel,
+    [ClothingStyle.OUTDOORS]: OutdoorsModel,
   };
 
   const ModelComponent = models[clothingStyle];

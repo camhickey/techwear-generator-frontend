@@ -12,10 +12,10 @@ export function NotFound() {
         PAGE NOT FOUND
       </h1>
       <button
-        className="inline-flex gap-2 items-center bg-black text-white uppercase p-2"
+        className="inline-flex gap-2 items-center bg-black text-white p-2"
         onClick={() => navigate('/')}
       >
-        Click to return to home
+        CLICK TO RETURN TO HOME
         <ArrowRightIcon className="w-5 h-5" />
       </button>
     </div>

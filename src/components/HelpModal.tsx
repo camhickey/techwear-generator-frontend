@@ -1,13 +1,4 @@
-import {
-  Dialog,
-  DialogPanel,
-  DialogTitle,
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-} from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/24/solid';
-import { useNavigate } from 'react-router';
+import { CustomModal } from '@components/CustomModal';
 
 interface HelpModalProps {
   isOpen: boolean;
@@ -15,108 +6,33 @@ interface HelpModalProps {
 }
 
 export function HelpModal({ isOpen, onClose }: HelpModalProps) {
-  const navigate = useNavigate();
+  const faqs = [
+    {
+      question: 'How do I use this site?',
+      answer:
+        'On your screen is the outline of a techwear outfit. Click on the colors to choose a color for each part of the outfit. Then click "create" to build your outfit.',
+    },
+    {
+      question: 'What is the style?',
+      answer:
+        'The style is determined by your choices of headwear, top, pants, and footwear.',
+    },
+    {
+      question: 'What is the color?',
+      answer:
+        'The color is determined by your choices of headwear, top, pants, and footwear.',
+    },
+  ];
   return (
-    <Dialog open={isOpen} onClose={onClose} className="relative z-50">
-      <div className="fixed inset-0 overflow-y-auto p-4">
-        <DialogPanel
-          transition
-          className="space-y-4 bg-black border-solid border-neutral-400 border-2 p-12 duration-300 ease-out data-[closed]:scale-95 data-[closed]:opacity-0"
-        >
-          <DialogTitle className="text-lg font-bold uppercase text-white">
-            FAQs
-          </DialogTitle>
-          <Disclosure as="div" className="p-6" defaultOpen>
-            <DisclosureButton className="group flex w-full items-center justify-between">
-              <p className="font-medium text-white text-left">
-                How do I use this site?
-              </p>
-              <ChevronDownIcon className="size-5 fill-white group-data-[open]:rotate-180" />
-            </DisclosureButton>
-            <DisclosurePanel className="mt-2 text-neutral-400">
-              <p>
-                The goal of this site is to help you build a techwear outfit
-                based on your preferences. On your screen is the outline of a
-                model representing the &quot;style&quot; of techwear you chose
-                (urban, grayman, cyberpunk, outdoors). Each model has four
-                parts: headwear, top, pants, and footwear. You can click on
-                these parts of the model to select the color you want for each
-                part. To change the color you apply to the clothing, use the
-                color picker to the left.
-              </p>
-              <p>
-                Once you&apos;ve colored the model, click on the GET OUTFIT
-                button. This will generate a random outfit based on your
-                selections and give you a link to the clothing. You can click
-                the NEW OUTFIT button to generate a new outfit based on your
-                previous selections, or close out and change your selections.
-              </p>
-            </DisclosurePanel>
-          </Disclosure>
-          <Disclosure as="div" className="p-6">
-            <DisclosureButton className="group flex w-full items-center justify-between">
-              <p className="font-medium text-white text-left">
-                Why did a card not show up when I made my outfit?
-              </p>
-              <ChevronDownIcon className="size-5 fill-white group-data-[open]:rotate-180" />
-            </DisclosureButton>
-            <DisclosurePanel className="mt-2 text-neutral-400">
-              Right now, the database holding the clothing may not have entries
-              for every combination of color, style, and article of clothing. If
-              you got a card saying &quot;Clothing not found&quot;, then this is
-              the case for your selection. The database will be updated in the
-              future, so this issue will hopefully be fixed.
-            </DisclosurePanel>
-          </Disclosure>
-          <Disclosure as="div" className="p-6">
-            <DisclosureButton className="group flex w-full items-center justify-between">
-              <p className="font-medium text-white text-left">
-                Why did I get the same clothing even though I clicked NEW OUTFIT
-                or NEW CLOTHING?
-              </p>
-              <ChevronDownIcon className="size-5 fill-white group-data-[open]:rotate-180" />
-            </DisclosureButton>
-            <DisclosurePanel className="mt-2 text-neutral-400">
-              <p>
-                NEW OUTFIT or NEW CLOTHING make a purely random selection of
-                clothing based on your input. The database I store the clothing
-                in may not have a lot (maybe none) of every combination of
-                clothing, so sometimes you will get the same clothing.
-              </p>
-            </DisclosurePanel>
-          </Disclosure>
-          <Disclosure as="div" className="p-6">
-            <DisclosureButton className="group flex w-full items-center justify-between">
-              <p className="font-medium text-white text-left">
-                What are these &quot;styles&quot;? (urban, grayman, cyberpunk,
-                outdoors)
-              </p>
-              <ChevronDownIcon className="size-5 fill-white group-data-[open]:rotate-180" />
-            </DisclosureButton>
-            <DisclosurePanel className="mt-2 text-neutral-400">
-              <p>
-                These styles you see are subsets of techwear fashion culture. If
-                you want a more detailed explanation on what makes each style
-                unique,{' '}
-                <button
-                  className="font-bold text-white hover:cursor-pointer"
-                  onClick={() => navigate('/about')}
-                >
-                  click here.
-                </button>{' '}
-                That said, whichever page you create your outfit on will
-                influence the types of clothing you get in your outfit. For
-                example, an outfit created on the &quot;urban&quot; page will
-                have different clothing than one created on the
-                &quot;outdoors&quot; page.
-              </p>
-            </DisclosurePanel>
-          </Disclosure>
-          <button className="text-sm uppercase text-white" onClick={onClose}>
-            CLOSE
-          </button>
-        </DialogPanel>
+    <CustomModal isOpen={isOpen} onClose={onClose} title="FAQs">
+      <div className="flex flex-col gap-4">
+        {faqs.map((faq) => (
+          <div>
+            <p className="font-medium text-white text-left">{faq.question}</p>
+            <p className="text-sm text-neutral-400 text-left">{faq.answer}</p>
+          </div>
+        ))}
       </div>
-    </Dialog>
+    </CustomModal>
   );
 }

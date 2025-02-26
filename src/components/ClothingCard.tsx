@@ -1,9 +1,13 @@
+import { ClothingArticle } from '@/enums';
+import { Button } from '@/components/Button';
+
 export interface ClothingCardProps {
   name: string;
   price: number;
   image: string;
   link: string;
-  onRefresh: () => void;
+  article: ClothingArticle;
+  onRefresh?: () => void;
   isLoading?: boolean;
 }
 
@@ -12,6 +16,7 @@ export function ClothingCard({
   price,
   image,
   link,
+  article,
   onRefresh,
   isLoading,
 }: ClothingCardProps) {
@@ -34,29 +39,33 @@ export function ClothingCard({
       </div>
       <div className="p-6">
         <p
-          className={`transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'} text-center text-sm text-neutral-200 font-bold`}
+          className={`transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'} text-center text-sm text-neutral-200 font-bold hover:cursor-default`}
         >
           {isLoading ? 'LOADING' : name.toUpperCase()}
         </p>
         <p
-          className={`transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'} text-center text-neutral-200`}
+          className={`transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'} text-center text-neutral-200 hover:cursor-default`}
         >
           {isLoading ? '...' : `$${price / 100}`}
         </p>
       </div>
-      <div className="flex flex-row">
-        <button
+      <div className="flex flex-row justify-center gap-2">
+        <Button
+          variant="secondary"
+          className="text-sm"
           onClick={() => window.open(link, '_blank')}
-          className="align-middle select-none font-bold text-center text-xs py-3 px-6 block w-full text-neutral-200"
         >
           BUY NOW
-        </button>
-        <button
-          onClick={onRefresh}
-          className="align-middle select-none font-bold text-center text-xs py-3 px-6 block w-full text-neutral-200"
-        >
-          NEW CLOTHING
-        </button>
+        </Button>
+        {onRefresh && (
+          <Button
+            variant="secondary"
+            className="text-sm text"
+            onClick={onRefresh}
+          >
+            NEW {article}
+          </Button>
+        )}
       </div>
     </div>
   );
